@@ -4,14 +4,30 @@ using UnityEngine;
 
 public class ClickableObject : BaseObject
 {
+    //private void OnEnable()
+    //{
+    //    //RectTransform _transform = this.transform.gameObject.GetComponentInParent<RectTransform>();
+    //    //Debug.Log("Parent " + GetTileReference.gameObject.name);
+    //}
 
-    public override void SetPositionByMapReference(RectTransform _ref)
+    public override void SetMapReference(Transform _ref)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Tile Ref " + _ref.name);
+        base.SetMapReference(_ref);
+        //SetNewPosition(_diff);
     }
 
-    public void Select()
+    /// <summary>
+    /// Events to be made when the click on the object occurs
+    /// </summary>
+    public void OnClick()
     {
-        Debug.Log("CLICKED");
+        GameManager.Instance.AddToSwipe(this);
+    }
+
+    private void SetNewPosition(Vector2 _newPos)
+    {
+
+        //this.gameObject.GetComponent<RectTransform>().anchoredPosition = _newPos;
     }
 }

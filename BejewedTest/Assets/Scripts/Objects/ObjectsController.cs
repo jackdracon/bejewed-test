@@ -31,7 +31,10 @@ public class ObjectsController : MonoBehaviour
     {
         GameObject instanceToCreate = GetRandomFromList();
         if (instanceToCreate)
-            Instantiate(instanceToCreate, _transform);
+        {
+            Instantiate(instanceToCreate, _transform, false);
+            //instanceToCreate.GetComponent<RectTransform>().anchoredPosition = Vector2.zero; 
+        }
     }
 
     /// <summary>
