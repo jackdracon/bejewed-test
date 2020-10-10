@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public abstract class BaseObject : MonoBehaviour
 {
-    private Transform mapPositionReference;
+    public Transform mapPositionReference;
 
     #region METHODS
     /// <summary>
@@ -17,12 +17,8 @@ public abstract class BaseObject : MonoBehaviour
     /// <param name="_ref"></param>
     public virtual void SetMapReference(Transform _ref) 
     {
-        mapPositionReference = _ref;
+        
     }
 
-    public virtual Transform GetTileReference 
-    {
-        get { return mapPositionReference; }
-    }
     #endregion
 }

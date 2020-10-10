@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     public void AddToSwipe(ClickableObject _obj)
     {
-        Debug.Log("ADDD TO SWIPE");
+        Debug.Log("ADD TO SWIPE " + _obj.mapPositionReference);
         toSwipe.Add(_obj);
         Swipe();
     }
@@ -41,10 +41,16 @@ public class GameManager : MonoBehaviour
     {
         if(toSwipe.Count == 2)
         {
-            //RectTransform _firstObjectPos = toSwipe[0].GetTileReference;
-            //RectTransform _secondObjectPos = toSwipe[1].GetTileReference;
-            //toSwipe[0].SetMapReference(_secondObjectPos);
-            //toSwipe[1].SetMapReference(_firstObjectPos);
+            ClickableObject swipe1 = toSwipe[0], swipe2 = toSwipe[1];
+            Transform _firstObj = swipe1.mapPositionReference;
+            Transform _secObj = swipe2.mapPositionReference;
+
+            //set reference
+            toSwipe[0].transform.SetParent(_secObj,false);
+            toSwipe[1].transform.SetParent(_firstObj, false);
+            toSwipe[0].SetMapReference(_secObj);
+            toSwipe[1].SetMapReference(_firstObj);
+
             Debug.Log("Swipe");
             CleanObjectsToSwipe();
         }

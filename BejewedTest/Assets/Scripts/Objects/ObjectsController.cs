@@ -9,10 +9,17 @@ public class ObjectsController : MonoBehaviour
     #region VARIABLES
     //ObjectsControllet instance
     private static ObjectsController instance;
+
+    [Tooltip("Object's Parent to instantiate"), SerializeField]
+    private Transform objsParent;
+
+    [Space]
     [Tooltip("A list with prefabs object to create")]
     public List<GameObject> prefabsToLoad;
     #endregion
 
+    //Objects that is on scene to be re-created whatever is needed
+    private List<Transform> objsInScene;
     #region PUBLIC METHODS
     private void Awake()
     {
@@ -21,6 +28,18 @@ public class ObjectsController : MonoBehaviour
             Destroy(this);
         }
         Instance = this;
+
+        InstantiatePrefabsFirst();
+    }
+
+    private void InstantiatePrefabsFirst()
+    {
+        objsInScene = new List<Transform>();
+        foreach(GameObject _pref in prefabsToLoad)
+        {
+            Transform _tObj = Instantiate(_pref.transform) as Transform;
+            objsInScene.Add(_tObj);
+        }
     }
 
     /// <summary>
@@ -33,7 +52,10 @@ public class ObjectsController : MonoBehaviour
         if (instanceToCreate)
         {
             Instantiate(instanceToCreate, _transform, false);
-            //instanceToCreate.GetComponent<RectTransform>().anchoredPosition = Vector2.zero; 
+            instanceToCreate.name = "C" + _transform.gameObject.name;
+            instanceToCreate.GetComponent<RectTransform>().localPosition = Vector2.zero;
+            //Debug.Log("Tile Ref " + _transform.name);
+            instanceToCreate.GetComponent<BaseObject>().SetMapReference(_transform);
         }
     }
 
@@ -43,7 +65,8 @@ public class ObjectsController : MonoBehaviour
     /// <returns>a random object</returns>
     public GameObject GetRandomFromList()
     {
-        return (prefabsToLoad != null) ? prefabsToLoad[Random.Range(0, (prefabsToLoad.Count - 1))] as GameObject : null;
+        return (objsInScene != null) ? objsInScene[Random.Range(0, (objsInScene.Count - 1))].gameObject : null;
+        //return (prefabsToLoad != null) ? prefabsToLoad[Random.Range(0, (prefabsToLoad.Count - 1))] as GameObject : null;
     }
 
     /// <summary>

@@ -42,7 +42,7 @@ public class MapManager : MonoBehaviour
         tileCollection = new GameObject[_tilesOnScene.Length];
         tileCollection = _tilesOnScene;
 
-        Debug.Log("Found: " + tileCollection.Length);
+        //Debug.Log("Found: " + tileCollection.Length);
     }
 
     private void Start()
