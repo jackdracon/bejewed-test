@@ -9,12 +9,7 @@ public class ClickableObject : BaseObject
     {
         //Debug.Log("Tile Ref " + _ref.name);
         mapPositionReference = _ref;
-        Debug.Log("Tile Ref " + mapPositionReference.name);
-    }
-
-    public void SetRectTransform(RectTransform _transform)
-    {
-        this.gameObject.GetComponent<RectTransform>().anchoredPosition = _transform.anchoredPosition;
+        //Debug.Log("Tile Ref " + mapPositionReference.name);
     }
 
     /// <summary>

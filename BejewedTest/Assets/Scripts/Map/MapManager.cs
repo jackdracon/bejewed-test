@@ -41,12 +41,12 @@ public class MapManager : MonoBehaviour
         GameObject[] _tilesOnScene  = GameObject.FindGameObjectsWithTag(tagTileName);
         tileCollection = new GameObject[_tilesOnScene.Length];
         tileCollection = _tilesOnScene;
-
-        //Debug.Log("Found: " + tileCollection.Length);
     }
 
-    private void Start()
+    IEnumerator Start()
     {
+        yield return new WaitUntil(() => ObjectsController.Instance.IsPrefabLoaded == true);
+        Debug.Log("Prefab " + ObjectsController.Instance.IsPrefabLoaded);
         AddObjectsTilemap();
     }
 
@@ -57,6 +57,7 @@ public class MapManager : MonoBehaviour
     {
         foreach (GameObject _obj in GetCurrentTiles())
         {
+            //Debug.Log("Obj - " + _obj.name);
             ObjectsController.Instance.CreateObject(_obj.transform);
         }
     }

@@ -16,6 +16,11 @@ public class ObjectsController : MonoBehaviour
     [Space]
     [Tooltip("A list with prefabs object to create")]
     public List<GameObject> prefabsToLoad;
+
+    /// <summary>
+    /// Flag to inform if the prefab is loaded on scene
+    /// </summary>
+    private bool prefabLoaded = false;
     #endregion
 
     //Objects that is on scene to be re-created whatever is needed
@@ -32,14 +37,23 @@ public class ObjectsController : MonoBehaviour
         InstantiatePrefabsFirst();
     }
 
+    /// <summary>
+    /// Insert a prefab object to be copied
+    /// and copy it whatever is necessary to 
+    /// load better and to use as a object on scene
+    /// </summary>
     private void InstantiatePrefabsFirst()
     {
+        Debug.Log(" Instantiate Prefab");
         objsInScene = new List<Transform>();
+
         foreach(GameObject _pref in prefabsToLoad)
         {
             Transform _tObj = Instantiate(_pref.transform) as Transform;
             objsInScene.Add(_tObj);
         }
+
+        IsPrefabLoaded = true;
     }
 
     /// <summary>
@@ -51,11 +65,12 @@ public class ObjectsController : MonoBehaviour
         GameObject instanceToCreate = GetRandomFromList();
         if (instanceToCreate)
         {
-            Instantiate(instanceToCreate, _transform, false);
-            instanceToCreate.name = "C" + _transform.gameObject.name;
-            instanceToCreate.GetComponent<RectTransform>().localPosition = Vector2.zero;
-            //Debug.Log("Tile Ref " + _transform.name);
-            instanceToCreate.GetComponent<BaseObject>().SetMapReference(_transform);
+            GameObject _instance = Instantiate(instanceToCreate, _transform, false);
+            _instance.name = "C" + _transform.name;
+
+            _instance.GetComponent<RectTransform>().localPosition = Vector2.zero;
+            
+            _instance.GetComponent<BaseObject>().SetMapReference(_transform);
         }
     }
 
@@ -77,6 +92,12 @@ public class ObjectsController : MonoBehaviour
     {
         if(_obj)
             Destroy(_obj);
+    }
+
+    public bool IsPrefabLoaded
+    {
+        get { return prefabLoaded; }
+        private set { prefabLoaded = value; }
     }
 
     /// <summary>
