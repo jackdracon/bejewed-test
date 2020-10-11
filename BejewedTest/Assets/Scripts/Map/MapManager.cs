@@ -18,9 +18,6 @@ public class MapManager : MonoBehaviour
     [Tooltip("Tag value related for research on the scene"), SerializeField]
     private string tagTileName = "Tile";
 
-    [Tooltip("The distance between the center tiles")]
-    private float distanceBetweenTiles = 110;
-
     //instance object
     private static MapManager instance;
     #endregion

@@ -7,6 +7,7 @@ public class ClickableObject : BaseObject
 
     public override void SetMapReference(Transform _ref)
     {
+        this.gameObject.name = "C" + _ref.name;
         //Debug.Log("Tile Ref " + _ref.name);
         mapPositionReference = _ref;
         //Debug.Log("Tile Ref " + mapPositionReference.name);

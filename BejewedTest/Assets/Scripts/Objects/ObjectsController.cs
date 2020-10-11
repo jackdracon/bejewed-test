@@ -66,7 +66,7 @@ public class ObjectsController : MonoBehaviour
         if (instanceToCreate)
         {
             GameObject _instance = Instantiate(instanceToCreate, _transform, false);
-            _instance.name = "C" + _transform.name;
+            //_instance.name = "C" + _transform.name;
 
             _instance.GetComponent<RectTransform>().localPosition = Vector2.zero;
             
