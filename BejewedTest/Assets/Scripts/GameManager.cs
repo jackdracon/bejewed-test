@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
     //GameManager instance
     private static GameManager instance;
 
+    //Line value from selected objects
+    private int l_obj1 = -1, l_obj2 = -1;
+    //column value from selected objects 
+    private int c_obj1 = -1, c_obj2 = -1;
+
     //A array with the current object to swipe
     private List<ClickableObject> toSwipe = new List<ClickableObject>(2);
 
@@ -52,63 +57,101 @@ public class GameManager : MonoBehaviour
         if(toSwipe.Count == 2)
         {
             ClickableObject swipe1 = toSwipe[0], swipe2 = toSwipe[1];
+            
+            //Check if are different objects
             if(swipe1.name != swipe2.name)
             {
-                bool _lineValid = IsLinePairAdjacent(swipe1.name, swipe2.name);
-                bool _columnValid = IsColumnPairAdjacent(swipe1.name, swipe2.name);
+                //moviment is valids
+                bool _lineValid = SameLine(swipe1.name, swipe2.name);
+                bool _columnValid = SameColumn(swipe1.name, swipe2.name);
 
-                Debug.Log("Line - " + _lineValid + " @ Col - " + _columnValid);
+                //Adjascent
+                bool _isLineAdjascent = LineAdjascent();
+                bool _isColumnAdjascent = ColumnAdjascent();
+
+                Debug.Log("Line - " + _lineValid + " @ Col - " + _columnValid + "|| Adjascent @ L " + _isLineAdjascent + " - C " + _isColumnAdjascent);
+
+                Transform _firstObj = swipe1.mapPositionReference;
+                Transform _secObj = swipe2.mapPositionReference;
+
+                //swipe the parents
+                toSwipe[0].transform.SetParent(_secObj, false);
+                toSwipe[1].transform.SetParent(_firstObj, false);
                 
-                    Transform _firstObj = swipe1.mapPositionReference;
-                    Transform _secObj = swipe2.mapPositionReference;
+                //swipe the map references
+                toSwipe[0].SetMapReference(_secObj);
+                toSwipe[1].SetMapReference(_firstObj);
 
-                    //set reference
-                    toSwipe[0].transform.SetParent(_secObj, false);
-                    toSwipe[1].transform.SetParent(_firstObj, false);
-                    toSwipe[0].SetMapReference(_secObj);
-                    toSwipe[1].SetMapReference(_firstObj);
-
-                    Debug.Log("Nice Swipe");
             }
             CleanObjectsToSwipe();
         }
     }
 
     /// <summary>
-    /// Validate the objects if they are adjacent 
+    /// Validate if they are line adjascent 
+    /// </summary>
+    /// <returns>true, if they are adjascent</returns>
+    private bool LineAdjascent()
+    {
+        if ((l_obj1 - 1) == l_obj2 || 
+            (l_obj1 + 1) == l_obj2)
+            return true;
+        return false;
+    }
+
+    /// <summary>
+    /// Validate if they are line adjascent 
+    /// </summary>
+    /// <returns>true, if they are adjascent</returns>
+    private bool ColumnAdjascent()
+    {
+        if ((c_obj1 + 1) == c_obj2 ||
+            (c_obj1 - 1) == c_obj2)
+            return true;
+        return false;
+    }
+
+    /// <summary>
+    /// Object's validation if they are line adjacent 
     /// </summary>
     /// <param name="_nameObj1">first object selected</param>
     /// <param name="_nameObj2">second object selected</param>
-    /// <returns>if they are adjacent, its a valid moviment </returns>
-    private bool IsLinePairAdjacent(string _nameObj1, string _nameObj2)
+    /// <returns>true, if they are on the same line. False, if not </returns>
+    private bool SameLine(string _nameObj1, string _nameObj2)
     {
         string _prefixName = "Ctile";
         string[] _cleanedName = new string[] { _nameObj1.Remove(0, _prefixName.Length), 
                                                _nameObj2.Remove(0, _prefixName.Length) };
-        
-        int _l1Var = (int)char.GetNumericValue(_cleanedName[0][1]);
-        int _l2Var = (int)char.GetNumericValue(_cleanedName[1][1]);
 
-        Debug.Log("OBJ 1 L - " + _l1Var + "| OBJ 2 L - " + _l2Var);
+        l_obj1 = (int)char.GetNumericValue(_cleanedName[0][1]);
+        l_obj2 = (int)char.GetNumericValue(_cleanedName[1][1]);
 
-        if (_l1Var == _l2Var)
+        Debug.Log("OBJ 1 L - " + l_obj1 + "| OBJ 2 L - " + l_obj2);
+
+        if (l_obj1 == l_obj2)
             return true;
 
         return false;
     }
 
-    private bool IsColumnPairAdjacent(string _nameObj1, string _nameObj2)
+    /// <summary>
+    /// Object's validation if they are column adjacent
+    /// </summary>
+    /// <param name="_nameObj1">first object selected</param>
+    /// <param name="_nameObj2">second object selected</param>
+    /// <returns>true, if they are on the same column. False, if not </returns>
+    private bool SameColumn(string _nameObj1, string _nameObj2)
     {
         string _prefixName = "Ctile";
         string[] _cleanedName = new string[] { _nameObj1.Remove(0, _prefixName.Length),
                                                _nameObj2.Remove(0, _prefixName.Length) };
 
-        int _c1 = (int)char.GetNumericValue(_cleanedName[0][(_cleanedName[0].Length -1)]);
-        int _c2 = (int)char.GetNumericValue(_cleanedName[1][(_cleanedName[1].Length - 1)]);
+        c_obj1 = (int)char.GetNumericValue(_cleanedName[0][(_cleanedName[0].Length -1)]);
+        c_obj2 = (int)char.GetNumericValue(_cleanedName[1][(_cleanedName[1].Length - 1)]);
 
-        Debug.Log("OBJ 1 C - " + _c1 + "| OBJ 2 C - " + _c2);
+        Debug.Log("OBJ 1 C - " + c_obj1 + "| OBJ 2 C - " + c_obj2);
 
-        if (_c1 == _c2)
+        if (c_obj1 == c_obj2)
             return true;
 
         return false;

@@ -59,14 +59,6 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public void AddObjectToColumn()
-    {
-
-    }
-
     //Get the current tiles on scene
     public GameObject[] GetCurrentTiles()
     {

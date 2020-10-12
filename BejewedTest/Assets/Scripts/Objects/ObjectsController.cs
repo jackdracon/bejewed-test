@@ -44,7 +44,6 @@ public class ObjectsController : MonoBehaviour
     /// </summary>
     private void InstantiatePrefabsFirst()
     {
-        Debug.Log(" Instantiate Prefab");
         objsInScene = new List<Transform>();
 
         foreach(GameObject _pref in prefabsToLoad)
@@ -81,11 +80,10 @@ public class ObjectsController : MonoBehaviour
     public GameObject GetRandomFromList()
     {
         return (objsInScene != null) ? objsInScene[Random.Range(0, (objsInScene.Count - 1))].gameObject : null;
-        //return (prefabsToLoad != null) ? prefabsToLoad[Random.Range(0, (prefabsToLoad.Count - 1))] as GameObject : null;
     }
 
     /// <summary>
-    /// Delete object
+    /// Delete object on scene
     /// </summary>
     /// <param name="_obj"></param>
     public void DeleteObject(GameObject _obj)
@@ -94,6 +92,9 @@ public class ObjectsController : MonoBehaviour
             Destroy(_obj);
     }
 
+    /// <summary>
+    /// Setter/Getter flag related to the load of prefab on scene
+    /// </summary>
     public bool IsPrefabLoaded
     {
         get { return prefabLoaded; }
