@@ -137,8 +137,8 @@ GameObject:
   m_Component:
   - component: {fileID: 247721614}
   - component: {fileID: 247721615}
-  - component: {fileID: 247721613}
   - component: {fileID: 247721616}
+  - component: {fileID: 247721613}
   m_Layer: 0
   m_Name: Central System
   m_TagString: Untagged
