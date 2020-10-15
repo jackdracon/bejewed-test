@@ -115,7 +115,11 @@ MonoBehaviour:
   m_MinSize: {x: 708, y: 492}
   m_MaxSize: {x: 18003, y: 14042}
   vertical: 0
+<<<<<<< HEAD
   controlID: 110
+=======
+  controlID: 125
+>>>>>>> parent of 6809a64... Line Combinations
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +144,11 @@ MonoBehaviour:
   m_MinSize: {x: 433, y: 492}
   m_MaxSize: {x: 14003, y: 14042}
   vertical: 1
+<<<<<<< HEAD
   controlID: 88
+=======
+  controlID: 103
+>>>>>>> parent of 6809a64... Line Combinations
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +173,11 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 134
+=======
+  controlID: 41
+>>>>>>> parent of 6809a64... Line Combinations
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -242,7 +254,11 @@ MonoBehaviour:
   m_MinSize: {x: 433, y: 271}
   m_MaxSize: {x: 14003, y: 10021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 89
+=======
+  controlID: 104
+>>>>>>> parent of 6809a64... Line Combinations
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -568,20 +584,34 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/Arts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
   - Assets/Arts
+=======
+    - Assets/Scripts
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets/Scripts
+>>>>>>> parent of 6809a64... Line Combinations
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\ViniciusBruno\Desktop\Projetos\BejewedTest\bejewed-test\BejewedTest
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: d03d0000
     m_LastClickedID: 15824
     m_ExpandedIDs: 00000000cc3d0000d23d0000d63d0000
+=======
+    m_SelectedIDs: 303b0000
+    m_LastClickedID: 15152
+    m_ExpandedIDs: 00000000183b0000
+>>>>>>> parent of 6809a64... Line Combinations
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -634,8 +664,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: c6310000
+    m_LastClickedInstanceID: 12742
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -720,9 +750,15 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: e4e9fffff0e9ffff663e0000
+=======
+      m_SelectedIDs: c6310000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 52fbffff
+>>>>>>> parent of 6809a64... Line Combinations
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

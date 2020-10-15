@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -21,11 +20,6 @@ public class GameManager : MonoBehaviour
 
     //A array with the current object to swipe
     private List<ClickableObject> toSwipe = new List<ClickableObject>(2);
-
-    //Action to be called to search the combinations
-    public Action SearchToCombinations;
-
-    private Transform prevObj1, prevObj2;
 
     private void Awake()
     {
@@ -76,50 +70,21 @@ public class GameManager : MonoBehaviour
                 bool _isColumnAdjascent = ColumnAdjascent();
 
                 Debug.Log("Line - " + _lineValid + " @ Col - " + _columnValid + "|| Adjascent @ L " + _isLineAdjascent + " - C " + _isColumnAdjascent);
-                if(_isLineAdjascent || _isColumnAdjascent)
-                {
-                    Transform _firstObj = swipe1.mapPositionReference;
-                    Transform _secObj = swipe2.mapPositionReference;
 
-                    //swipe the parents
-                    toSwipe[0].transform.SetParent(_secObj, false);
-                    toSwipe[1].transform.SetParent(_firstObj, false);
+                Transform _firstObj = swipe1.mapPositionReference;
+                Transform _secObj = swipe2.mapPositionReference;
 
-                    //swipe the map references
-                    toSwipe[0].SetMapReference(_secObj);
-                    toSwipe[1].SetMapReference(_firstObj);
+                //swipe the parents
+                toSwipe[0].transform.SetParent(_secObj, false);
+                toSwipe[1].transform.SetParent(_firstObj, false);
+                
+                //swipe the map references
+                toSwipe[0].SetMapReference(_secObj);
+                toSwipe[1].SetMapReference(_firstObj);
 
-                    SearchToCombinations();
-                }
             }
             CleanObjectsToSwipe();
         }
-    }
-
-    //In successful combinations, that will destroy the objects and and call to create others
-    public void SuccessCombination(List<GameObject> _sameTypeObjs)
-    {
-        List<Transform> _parentsToCreate = new List<Transform>();
-
-        //Destroy objects
-        foreach (GameObject _obj in _sameTypeObjs)
-        {
-            Transform _base = _obj.GetComponent<BaseObject>().mapPositionReference;
-            _parentsToCreate.Add(_base);
-            ObjectsController.Instance.DeleteObject(_obj);
-        }
-
-        //create another objects
-        foreach (Transform _obj in _parentsToCreate)
-        {
-            StartCoroutine(ObjectsController.Instance.DelayedCreateObject(_obj));
-        }
-    }
-
-    //Failed combinations
-    public void FailedCombination()
-    {
-        //Desfazer a jogada
     }
 
     /// <summary>

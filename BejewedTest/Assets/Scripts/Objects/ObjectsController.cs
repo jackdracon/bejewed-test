@@ -65,22 +65,12 @@ public class ObjectsController : MonoBehaviour
         if (instanceToCreate)
         {
             GameObject _instance = Instantiate(instanceToCreate, _transform, false);
+            //_instance.name = "C" + _transform.name;
 
             _instance.GetComponent<RectTransform>().localPosition = Vector2.zero;
             
             _instance.GetComponent<BaseObject>().SetMapReference(_transform);
         }
-    }
-
-    /// <summary>
-    /// Create a object delayed in one second after the call
-    /// </summary>
-    /// <param name="_parent">Parent's from the new object</param>
-    /// <returns></returns>
-    public IEnumerator DelayedCreateObject(Transform _parent)
-    {
-        yield return new WaitForSeconds(1);
-        CreateObject(_parent);
     }
 
     /// <summary>
