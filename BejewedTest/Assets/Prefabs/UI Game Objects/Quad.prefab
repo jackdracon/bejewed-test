@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2974738644991020805}
   - component: {fileID: 2974738644991020803}
-  - component: {fileID: 2974738644991020802}
+  - component: {fileID: 7766396111428394617}
   - component: {fileID: 8078353444048143965}
   - component: {fileID: 2430252846925610721}
   - component: {fileID: 4250941348186058825}
@@ -48,7 +48,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2974738644991020804}
   m_CullTransparentMesh: 0
---- !u!114 &2974738644991020802
+--- !u!114 &7766396111428394617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2974738644991020804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef8b96895a0ec4ba685178a052544251, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -67,9 +67,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3286163911610860551, guid: 9c309aa10dcaab7419a6c73eec2707c0,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 09eaa0821911e1942bc4b643381eb024, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!61 &8078353444048143965
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -108,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d9d061e7f08f34bbc5e2bbe31cef0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapPositionReference: {fileID: 0}
 --- !u!114 &4250941348186058825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +155,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 2974738644991020802}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
