@@ -100,6 +100,8 @@ public class GameManager : MonoBehaviour
     public void SuccessCombination(List<GameObject> _sameTypeObjs)
     {
         List<Transform> _parentsToCreate = new List<Transform>();
+        
+        Debug.Log("SUCCESS");
 
         //Destroy objects
         foreach (GameObject _obj in _sameTypeObjs)
